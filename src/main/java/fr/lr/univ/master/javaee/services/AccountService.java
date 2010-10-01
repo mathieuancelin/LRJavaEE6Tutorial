@@ -25,16 +25,20 @@ public class AccountService {
 
     public void createAccount(TwitterUser user) {
         em.persist(user);
-        registration.fire(new RegistrationEvent(user));
+        //registration.fire(new RegistrationEvent(user));
     }
 
     public void deleteAccount(Long id) {
-        unregistration.fire(new DeleteAccountEvent(em.find(TwitterUser.class, id)));
+        //unregistration.fire(new DeleteAccountEvent(em.find(TwitterUser.class, id)));
         em.remove(em.find(TwitterUser.class, id));
     }
 
     public TwitterUser authenticate(String user, String password) {
-        return null;
+        TwitterUser u = em.createNamedQuery("authenticate", TwitterUser.class)
+                .setParameter("username", user)
+                .setParameter("password", password)
+                .getSingleResult();
+        return u;
     }
 
 }

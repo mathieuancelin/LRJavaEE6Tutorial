@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -17,6 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
+@NamedQuery(name = "authenticate",
+    query = "select u from TwitterUser u where u.username = :username and u.password = :password")
 public class TwitterUser {
 
     @Id
@@ -37,7 +40,7 @@ public class TwitterUser {
     private String website;
 
     @OneToMany(cascade=CascadeType.ALL)
-    private Collection<TwitterPost> post;
+    private Collection<TwitterPost> posts;
 
     @ManyToMany(cascade=CascadeType.ALL)
     private Collection<TwitterUser> followers;
@@ -82,12 +85,12 @@ public class TwitterUser {
         this.password = password;
     }
 
-    public Collection<TwitterPost> getPost() {
-        return post;
+    public Collection<TwitterPost> getPosts() {
+        return posts;
     }
 
-    public void setPost(Collection<TwitterPost> post) {
-        this.post = post;
+    public void setPosts(Collection<TwitterPost> post) {
+        this.posts = post;
     }
 
     public String getSurname() {
@@ -116,7 +119,7 @@ public class TwitterUser {
 
     @Override
     public String toString() {
-        return "TwitterUser{" + "id=" + id + "username=" + username + "password=" + password + "email=" + email + "name=" + name + "surname=" + surname + "website=" + website + "post=" + post + "followers=" + followers + '}';
+        return "TwitterUser{" + "id=" + id + "username=" + username + "password=" + password + "email=" + email + "name=" + name + "surname=" + surname + "website=" + website + "post=" + posts + "followers=" + followers + '}';
     }
 
 }

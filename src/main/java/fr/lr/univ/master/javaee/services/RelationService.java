@@ -23,7 +23,7 @@ public class RelationService {
     public void newFollower(Long id, TwitterUser follower) {
         em.persist(follower);
         em.find(TwitterUser.class, id).getFollowers().add(follower);
-        followerEvt.fire(new NewFollowerEvent(em.find(TwitterUser.class, id), follower));
+        //followerEvt.fire(new NewFollowerEvent(em.find(TwitterUser.class, id), follower));
     }
     
     public Collection<TwitterUser> follows(Long id) {

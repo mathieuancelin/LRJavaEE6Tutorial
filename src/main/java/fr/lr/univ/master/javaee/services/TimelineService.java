@@ -17,11 +17,11 @@ public class TimelineService {
 
     public void newTweet(Long id, TwitterPost post) {
         em.persist(post);
-        em.find(TwitterUser.class, id).getPost().add(post);
+        em.find(TwitterUser.class, id).getPosts().add(post);
     }
 
     public Collection<TwitterPost> timeline(Long id) {
-        return em.find(TwitterUser.class, id).getPost();
+        return em.find(TwitterUser.class, id).getPosts();
     }
 
 }

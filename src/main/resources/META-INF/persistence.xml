@@ -2,10 +2,13 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="tutorialPU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <jta-data-source>jdbc/__default</jta-data-source>
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <jta-data-source>jdbc/sample</jta-data-source>
+    <class>fr.lr.univ.master.javaee.entity.TwitterPost</class>
+    <class>fr.lr.univ.master.javaee.entity.TwitterUser</class>
     <properties>
       <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.target-database" value="DERBY"/>
+      <property name="eclipselink.logging.level" value="INFO"/>
     </properties>
   </persistence-unit>
 </persistence>

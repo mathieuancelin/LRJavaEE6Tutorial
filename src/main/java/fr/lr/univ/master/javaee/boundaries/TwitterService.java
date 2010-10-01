@@ -39,6 +39,10 @@ public class TwitterService {
         account.deleteAccount(id);
     }
 
+    public TwitterUser authenticate(String user, String password) {
+        return account.authenticate(user, password);
+    }
+
     public void newTweet(Long id, TwitterPost post) {
         timeline.newTweet(id, post);
     }

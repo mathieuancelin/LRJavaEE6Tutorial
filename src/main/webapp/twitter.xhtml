@@ -1,44 +1,68 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Twitter</title>
+        <link rel="stylesheet" type="text/css" href="main.css"/>
         <h:panelGrid rendered="${controller.currentUser == null}">
             <meta http-equiv="refresh" content="0; login.xhtml"/>
         </h:panelGrid>
     </h:head>
     <h:body>
+        <div id="frame">
         <h1>Twitter</h1>
-        <br/>
-        <h:panelGrid rendered="${controller.currentUser != null}">
-            <h:form>
-                Logged in user : <h:outputText value="#{controller.currentUser.username}" />
-                <h:commandButton action="#{controller.doDeAuthenticate}" value="Logout"/>
-            </h:form>
-            <br/>
-            <h2>Follows</h2>
-            <h:dataTable value="#{controller.follows}" var="followed">
-                <h:column>
-                    <h:outputText value="#{followed.username}"/>
-                </h:column>
-            </h:dataTable>
-            <br/>
-            <h2>Followers</h2>
-            <h:dataTable value="#{controller.followers}" var="follower">
-                <h:column>
-                    <h:outputText value="#{follower.username}"/>
-                </h:column>
-            </h:dataTable>
-            <br/>
-            <h2>Timeline</h2>
-            <h:dataTable value="#{controller.timeline}" var="tweet">
-                <h:column>
-                    <h:outputText value="#{tweet.body}"/>
-                </h:column>
-            </h:dataTable>
-        </h:panelGrid>
+        <div id="top">
+            <div id="content">
+                <h:form>
+                    Logged in user : <h:outputText value="#{controller.currentUser.username}" />                         
+                    <h:commandButton action="#{controller.doDeAuthenticate}" value="Logout"/>
+                </h:form>
+            </div>
+        </div>
+        <div id="container">
+            <div id="content">
+                <h:panelGrid rendered="${controller.currentUser != null}">
+                    <br/>
+                    <h:form>
+                        <h:inputTextarea value="#{controller.user}" styleClass="intweet"/>
+                        <h:commandButton action="#{controller.doAuthenticate}" value="send"/>
+                    </h:form>
+                    <br/>
+                    <h:dataTable value="#{controller.timeline}" var="tweet">
+                        <h:column>
+                            <div id="tweet">
+                                <h:outputText value="#{tweet.body}"/>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGrid>
+                <br/>
+            </div>
+            <div id="footer">
+                <p>Twitter Master ICONE</p>
+            </div>
+        </div>
+        <div id="right">
+            <div id="content">
+                <h4>Follows</h4>
+                <h:dataTable value="#{controller.follows}" var="followed">
+                    <h:column>
+                        <h:outputText value="#{followed.username}"/>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h4>Followers</h4>
+                <h:dataTable value="#{controller.followers}" var="follower">
+                    <h:column>
+                        <h:outputText value="#{follower.username}"/>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <br/>
+            </div>
+        </div>
+        </div>
     </h:body>
 </html>
 

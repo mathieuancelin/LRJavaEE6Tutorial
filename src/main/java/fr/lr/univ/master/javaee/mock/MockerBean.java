@@ -4,23 +4,21 @@ import fr.lr.univ.master.javaee.boundaries.TwitterService;
 import fr.lr.univ.master.javaee.entity.TwitterPost;
 import fr.lr.univ.master.javaee.entity.TwitterUser;
 import java.util.Date;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
-import javax.ejb.Startup;
 
 /**
  *
  * @author Mathieu ANCELIN
  */
-@Startup
+//@Startup
 @Singleton
 public class MockerBean {
 
     @EJB
     private TwitterService service;
 
-    @PostConstruct
+    //@PostConstruct
     public void mock() {
         TwitterUser account = new TwitterUser();
         account.setEmail("mathieu.ancelin@gmail.com");

@@ -4,7 +4,10 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Twitter</title>
+        <h:panelGrid rendered="${controller.currentUser == null}">
+            <meta http-equiv="refresh" content="0; login.xhtml"/>
+        </h:panelGrid>
     </h:head>
     <h:body>
         <h1>Twitter</h1>
@@ -36,11 +39,6 @@
                 </h:column>
             </h:dataTable>
         </h:panelGrid>
-        <h:form rendered="${controller.currentUser == null}">
-            Username : <h:inputText value="#{controller.user}" /><br/>
-            Password : <h:inputText value="#{controller.password}" /><br/>
-            <h:commandButton action="#{controller.doAuthenticate}" value="Login"/>
-        </h:form>
     </h:body>
 </html>
 

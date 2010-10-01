@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
@@ -18,8 +19,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @XmlRootElement
-@NamedQuery(name = "authenticate",
-    query = "select u from TwitterUser u where u.username = :username and u.password = :password")
+@NamedQueries({
+    @NamedQuery(name = "authenticate",
+        query = "select u from TwitterUser u where u.username = :username and u.password = :password"),
+    @NamedQuery(name = "follows",
+        query = "select distinct u from TwitterUser u where exists ("
+            + "select follower from u.followers follower where follower.id = :id)")
+        })
 public class TwitterUser {
 
     @Id

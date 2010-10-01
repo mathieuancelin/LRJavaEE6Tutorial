@@ -23,14 +23,22 @@ public class RelationService {
     public void newFollower(Long id, TwitterUser follower) {
         em.persist(follower);
         em.find(TwitterUser.class, id).getFollowers().add(follower);
-        //followerEvt.fire(new NewFollowerEvent(em.find(TwitterUser.class, id), follower));
+        followerEvt.fire(new NewFollowerEvent(em.find(TwitterUser.class, id), follower));
     }
     
     public Collection<TwitterUser> follows(Long id) {
-        return null;
+        TwitterUser user = em.find(TwitterUser.class, id);
+        Collection<TwitterUser> u = em.createNamedQuery("follows")
+                .setParameter("id", id)
+                .getResultList();
+        u.remove(user);
+        return u;
     }
 
     public Collection<TwitterUser> followers(Long id) {
-        return em.find(TwitterUser.class, id).getFollowers();
+        TwitterUser user = em.find(TwitterUser.class, id);
+        Collection<TwitterUser> u = em.find(TwitterUser.class, id).getFollowers();
+        u.remove(user);
+        return u;
     }
 }

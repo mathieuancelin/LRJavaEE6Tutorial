@@ -29,15 +29,15 @@ public class EmailSender {
     private static final String PASSWORD = "twitter";
 
     public void newAccount(@Observes RegistrationEvent event) throws MessagingException {
-        sendEMail(event.getUser(), "Bienvenue sur twitter.");
+        //sendEMail(event.getUser(), "Bienvenue sur twitter.");
     }
 
     public void deleteAccount(@Observes DeleteAccountEvent event) throws MessagingException {
-        sendEMail(event.getUser(), "Au revoir.");
+        //sendEMail(event.getUser(), "Au revoir.");
     }
 
     public void newFollower(@Observes NewFollowerEvent event) throws MessagingException {
-        sendEMail(event.getUser(), "Nouveau follower");
+        //sendEMail(event.getUser(), "Nouveau follower");
     }
 
     private void sendEMail(TwitterUser user, String message) throws MessagingException {

@@ -42,10 +42,21 @@ public class MockerBean {
 
         service.createAccount(account2);
 
+        TwitterUser account3 = new TwitterUser();
+        account3.setEmail("maurice.plutanfiard@gmail.com");
+        account3.setName("PLUTANFIARD");
+        account3.setPassword("password");
+        account3.setSurname("Maurice");
+        account3.setUsername("maurice.plutanfiard");
+        account3.setWebsite("www.maurice.plutanfiard.com");
+
+        service.createAccount(account3);
+
         service.newFollower(account.getId(), account);
         service.newFollower(account.getId(), account2);
         service.newFollower(account2.getId(), account2);
         service.newFollower(account2.getId(), account);
+        service.newFollower(account3.getId(), account);
 
         TwitterPost post = new TwitterPost();
         post.setTweetDate(new Date().getTime());
@@ -60,5 +71,19 @@ public class MockerBean {
         post2.setBody("hello 2 twitter :)");
 
         service.newTweet(account2.getId(), post2);
+
+        TwitterPost post3 = new TwitterPost();
+        post3.setTweetDate(new Date().getTime());
+        post3.setUser(account2);
+        post3.setBody("hello 3 twitter :)");
+
+        service.newTweet(account3.getId(), post3);
+
+        TwitterPost post4 = new TwitterPost();
+        post4.setTweetDate(new Date().getTime());
+        post4.setUser(account2);
+        post4.setBody("hello 4 twitter :)");
+
+        service.newTweet(account3.getId(), post4);
     }
 }

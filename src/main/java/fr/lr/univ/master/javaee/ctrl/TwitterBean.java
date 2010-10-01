@@ -5,9 +5,9 @@ import fr.lr.univ.master.javaee.entity.TwitterPost;
 import fr.lr.univ.master.javaee.entity.TwitterUser;
 import java.io.Serializable;
 import java.util.Collection;
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -36,22 +36,22 @@ public class TwitterBean implements Serializable {
 
     private Collection<TwitterPost> timeline;
 
+    public TwitterBean() {
+        System.out.println("new controller");
+    }
+
     public String doAuthenticate() {
         currentUser = service.authenticate(user, password);
         followers = service.followers(currentUser.getId());
+        follows = service.follows(currentUser.getId());
         timeline = service.timeline(currentUser.getId());
         return "twitter";
     }
 
     public String doDeAuthenticate() {
-        ((HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
-        currentUser = null;
-        user = null;
-        password = null;
-        followers = null;
-        follows = null;
-        timeline = null;
-        return "twitter";
+        ((HttpSession)FacesContext.getCurrentInstance()
+                .getExternalContext().getSession(true)).invalidate();
+        return "redirect.html";
     }
 
     public TwitterUser getCurrentUser() {

@@ -9,12 +9,18 @@
     <h:body>
         <h1>Twitter</h1>
         <br/>
-        <c:if test="${controller.currentUser != null}">
-
+        <h:panelGrid rendered="${controller.currentUser != null}">
             <h:form>
                 Logged in user : <h:outputText value="#{controller.currentUser.username}" />
                 <h:commandButton action="#{controller.doDeAuthenticate}" value="Logout"/>
             </h:form>
+            <br/>
+            <h2>Follows</h2>
+            <h:dataTable value="#{controller.follows}" var="followed">
+                <h:column>
+                    <h:outputText value="#{followed.username}"/>
+                </h:column>
+            </h:dataTable>
             <br/>
             <h2>Followers</h2>
             <h:dataTable value="#{controller.followers}" var="follower">
@@ -29,14 +35,12 @@
                     <h:outputText value="#{tweet.body}"/>
                 </h:column>
             </h:dataTable>
-        </c:if>
-        <c:if test="${controller.currentUser == null}">
-            <h:form>
-                Username : <h:inputText value="#{controller.user}" /><br/>
-                Password : <h:inputText value="#{controller.password}" /><br/>
-                <h:commandButton action="#{controller.doAuthenticate}" value="Login"/>
-            </h:form>
-        </c:if>
+        </h:panelGrid>
+        <h:form rendered="${controller.currentUser == null}">
+            Username : <h:inputText value="#{controller.user}" /><br/>
+            Password : <h:inputText value="#{controller.password}" /><br/>
+            <h:commandButton action="#{controller.doAuthenticate}" value="Login"/>
+        </h:form>
     </h:body>
 </html>
 

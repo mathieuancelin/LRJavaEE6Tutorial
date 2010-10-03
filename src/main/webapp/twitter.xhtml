@@ -4,46 +4,43 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Twitter</title>
-        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
         <h:panelGrid rendered="${controller.currentUser == null}">
             <meta http-equiv="refresh" content="0; login.xhtml"/>
         </h:panelGrid>
     </h:head>
     <h:body>
-        <div id="frame">
-        <h1>Twitter</h1>
-        <div id="top">
-            <div id="content">
+        <div id="wrap">
+            <div id="header">
+                <div id="logoBird"></div>
+                <div id="logoTwitter"></div>
+            </div>
+            <div id="menu">
                 <h:form>
-                    Logged in user : <h:outputText value="#{controller.currentUser.username}" />                         
-                    <h:commandButton action="#{controller.doDeAuthenticate}" value="Logout"/>
+                    Logged in user : <h:outputText value="#{controller.currentUser.username}" /> | 
+                    <h:commandLink action="#{controller.doDeAuthenticate}" value="Logout"/>
                 </h:form>
             </div>
-        </div>
-        <div id="container">
+            <div style="clear: both;"></div>
             <div id="content">
-                <h:panelGrid rendered="${controller.currentUser != null}">
-                    <br/>
-                    <h:form>
-                        <h:inputTextarea value="#{controller.user}" styleClass="intweet"/>
-                        <h:commandButton action="#{controller.doAuthenticate}" value="send"/>
-                    </h:form>
-                    <br/>
+                <h:form>
+                    <h:inputTextarea value="#{controller.user}" styleClass="intweet"/>
+                    <h:commandButton action="#{controller.doAuthenticate}" value="send" style="width: 460px;"/>
+                </h:form>
+                <br/>
+                <div id="article">
                     <h:dataTable value="#{controller.timeline}" var="tweet">
                         <h:column>
                             <div id="tweet">
-                                <h:outputText value="#{tweet.body}"/>
+                                <h4>by @<h:outputText value="#{tweet.user.username}"/></h4>
+                                <br/>
+                                <span><h:outputText value="#{tweet.body}"/></span>
                             </div>
                         </h:column>
                     </h:dataTable>
-                </h:panelGrid>
-                <br/>
+                </div>
+                <div style="clear: both;"></div>
             </div>
-            <div id="footer">
-                <p>Twitter Master ICONE</p>
-            </div>
-        </div>
-        <div id="right">
             <div id="content">
                 <h4>Follows</h4>
                 <h:dataTable value="#{controller.follows}" var="followed">
@@ -58,10 +55,12 @@
                         <h:outputText value="#{follower.username}"/>
                     </h:column>
                 </h:dataTable>
-                <br/>
-                <br/>
+                <div style="clear: both;"></div>
             </div>
-        </div>
+            <div id="bottom"></div>
+            <div id="footer">
+                <p>Twitter Master ICONE</p>
+            </div>
         </div>
     </h:body>
 </html>

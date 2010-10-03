@@ -1,0 +1,257 @@
+/* 
+    Document   : style
+    Created on : 1 févr. 2010, 16:35:15
+    Author     : rgrecourt
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+    background: #fff;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 17px;
+    color: #44b8ff;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #33ccff;
+}
+a:hover {
+    text-decoration: underline;
+    color: #002233;
+}
+
+#wrap {
+    margin: 0 auto;
+    width: 500px;
+}
+
+#header {
+    background: #fff url(images/header.jpg) no-repeat;
+    background-position:bottom left;
+    height: 200px;
+}
+
+#logoTwitter {
+    background-image: url(images/logo.png);
+    background-repeat: no-repeat;
+    width:224px;
+    height:55px;
+    top:100px;
+    left:60px;
+    float:none;
+    position:relative;
+}
+
+#logoBird {
+    background-image: url(images/bird.png);
+    background-repeat: no-repeat;
+    width:80px;
+    height:55px;
+    top:0px;
+    left:400px;
+    float:left;
+    position:relative;
+}
+
+#menu {
+    padding: 0 20px;
+    height:30px;
+    background: #fff url(images/content.jpg) repeat-y;
+    color: #0000BB;
+    text-align: right;
+}
+
+#menu ul{
+    list-style-type: none;
+}
+
+#menu li{
+    float:left;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+h1 {
+    padding: 10px 0 0 5px;
+    font-size: 18px;
+    color: #000;
+}
+h1 a {
+    padding: 10px 0 0 5px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 100;
+    text-decoration: underline;
+}
+
+#subscribe{
+    text-align:center;
+}
+
+#content {
+    padding: 0 20px;
+    background: #fff url(images/content.jpg) repeat-y;
+}
+
+#tweet {
+     border: solid 1px #0000BB;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    padding: 15px 15px;
+    width: 422px;
+    color: #000000;
+}
+
+.intweet {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    padding: 7px 7px;
+    background-color: #EEEEEE;
+    width: 445px;
+    height: 40px;
+}
+
+.right {
+    float: right;
+    width: 300px;
+    text-align: center;
+}
+
+.right h2 {
+    font-size: 18px;
+    font-weight: 100;
+    padding-left: 10px;
+    height: 24px;
+    line-height: 24px;
+    background: #002233;
+    text-align:left;
+    margin-bottom:10px;
+}
+
+#timelineTitle{
+    font-size: 18px;
+    font-weight: 100;
+    padding-left: 10px;
+    padding-right:10px;
+    height: 24px;
+    line-height: 24px;
+    background: #002233;
+    text-align:left;
+    margin-bottom:10px;
+}
+
+#timelineTitle a:hover {
+    text-decoration: none;
+    color: #33ccff;
+}
+
+.titleName{
+    float:left;
+    font-size: 18px;
+}
+
+.titleLink{
+    float:right;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.article{
+    text-align:justify;
+}
+
+.article h3
+    text-align:left;
+}
+
+.article span{
+    margin-left:10px;
+}
+
+.post{
+    width:300px;
+    height:50px;
+    margin-top:10px;
+    border:1px solid #002233;
+}
+
+#realContent{
+    text-align:center;
+}
+
+#welcome{
+    text-align:center;
+    font-size:15px;
+    color:#44b8ff;
+}
+
+#error{
+    text-align:center;
+    color: red;
+    font-weight: bold;
+    font-size:15px;
+}
+
+.submit{
+    margin-top:10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border:1px solid #002233;
+    color:#44b8ff;
+}
+
+.left {
+    float: left;
+    width: 150px;
+}
+
+.left h2 {
+    padding-left: 10px;
+    height: 24px;
+    line-height: 24px;
+    background: #002233;
+    color: #44b8ff;
+    font-size: 13px;
+}
+
+.left ul {
+    padding: 10px 0 15px 20px;
+    color: #002233;
+}
+
+.left ul li a {
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.articles {
+    padding: 10px;
+}
+
+#bottom {
+    background: #fff url(images/bottom.jpg) no-repeat;
+    padding: 10px 0;
+}
+
+#footer {
+    text-align: center;
+    font-size: 11px;
+    color: #33ccff;
+    padding-bottom: 10px;
+}
+#footer a {
+    color: #33ccff;
+}
+#footer a:hover { 
+    color: #002233;
+}

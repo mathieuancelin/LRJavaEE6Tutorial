@@ -36,10 +36,10 @@ public class TwitterBean implements Serializable {
 
     private Collection<TwitterPost> timeline;
 
-    public TwitterBean() {
-        System.out.println("new controller");
-    }
-
+    ///////////////////////
+    // actions
+    ///////////////////////
+    
     public String doAuthenticate() {
         currentUser = service.authenticate(user, password);
         followers = service.followers(currentUser.getId());
@@ -53,6 +53,10 @@ public class TwitterBean implements Serializable {
                 .getExternalContext().getSession(true)).invalidate();
         return "redirect.html";
     }
+
+    //////////////////////////////////
+    // getters and setters          //
+    //////////////////////////////////
 
     public TwitterUser getCurrentUser() {
         return currentUser;

@@ -58,4 +58,5 @@ public class TwitterService {
     public Collection<TwitterUser> searchUser(String query) {
         return TwitterUser.search(query);
     }
+
 }

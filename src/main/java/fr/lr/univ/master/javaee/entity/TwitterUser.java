@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "TwitterUser.all",
         query = "select u from TwitterUser u"),
+    @NamedQuery(name = "TwitterUser.findByUserid",
+        query = "select u from TwitterUser u where u.username = :username"),
     @NamedQuery(name = "authenticate",
         query = "select u from TwitterUser u where u.username = :username and u.password = :password"),
     @NamedQuery(name = "follows",
@@ -93,6 +95,13 @@ public class TwitterUser implements Serializable {
         TwitterUser u = em.createNamedQuery("authenticate", TwitterUser.class)
                 .setParameter("username", user)
                 .setParameter("password", password)
+                .getSingleResult();
+        return u;
+    }
+
+    public static TwitterUser findByUserID(String user) {
+        TwitterUser u = em.createNamedQuery("TwitterUser.findByUserid", TwitterUser.class)
+                .setParameter("username", user)
                 .getSingleResult();
         return u;
     }

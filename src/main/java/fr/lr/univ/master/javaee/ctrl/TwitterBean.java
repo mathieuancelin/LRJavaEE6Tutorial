@@ -24,11 +24,15 @@ public class TwitterBean implements Serializable {
     @EJB
     private TwitterService service;
 
-    private TwitterUser currentUser;
+    private TwitterUser loggedinUser;
+
+    private TwitterUser visitedUser;
 
     private String user;
 
     private String password;
+
+    private String paramUser;
 
     private Collection<TwitterUser> followers;
 
@@ -41,10 +45,9 @@ public class TwitterBean implements Serializable {
     ///////////////////////
     
     public String doAuthenticate() {
-        currentUser = service.authenticate(user, password);
-        followers = service.followers(currentUser.getId());
-        follows = service.follows(currentUser.getId());
-        timeline = service.timeline(currentUser.getId());
+        loggedinUser = service.authenticate(user, password);
+        visitedUser = loggedinUser;
+        paramUser = visitedUser.getUsername();
         return "twitter";
     }
 
@@ -54,12 +57,41 @@ public class TwitterBean implements Serializable {
         return "redirect.html";
     }
 
+    public void doNavigate() {
+        System.out.println("doNavigate : " + paramUser);
+        visitedUser = TwitterUser.findByUserID(paramUser);
+        followers = service.followers(visitedUser.getId());
+        follows = service.follows(visitedUser.getId());
+        timeline = service.timeline(visitedUser.getId());
+    }
+
     //////////////////////////////////
     // getters and setters          //
     //////////////////////////////////
 
-    public TwitterUser getCurrentUser() {
-        return currentUser;
+    public void setParamUser(String paramUser) {
+        this.paramUser = paramUser;
+    }
+
+    public String getParamUser() {
+        return paramUser;
+    }
+
+    public TwitterUser getLoggedinUser() {
+        return loggedinUser;
+    }
+
+    public void setLoggedinUser(TwitterUser loggedinUser) {
+        this.loggedinUser = loggedinUser;
+    }
+
+    public TwitterUser getVisitedUser() {
+        return visitedUser;
+    }
+
+
+    public void setVisitedUser(TwitterUser visitedUser) {
+        this.visitedUser = visitedUser;
     }
 
     public String getPassword() {

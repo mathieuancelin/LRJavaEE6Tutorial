@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fr.lr.univ.master.javaee.listener;
 
 import fr.lr.univ.master.javaee.entity.TwitterUser;

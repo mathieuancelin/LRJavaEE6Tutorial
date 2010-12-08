@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:include src="head.xhtml"/>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+        <div id="page">
+
+            <h:form>
+                Auteur : <h:inputText value="#{applicationController.author}"/><br/>
+                <h:inputTextarea id="failText" cols="60" rows="3"
+                                 value="#{applicationController.text}"/><br/>
+                Catégorie : 
+                <h:selectOneMenu value="#{applicationController.category}">
+                      <f:selectItems
+                          value="#{applicationController.categs}"
+                          var="categ"
+                          itemLabel="#{categ.name}"
+                          itemValue="#{categ.id.toString()}"/>
+                </h:selectOneMenu>
+                <h:commandButton id="formSubmit" value="Poster" action="#{applicationController.doPost}"/>
+            </h:form>
+
+            <div id="content">
+                <ui:include src="list.xhtml"/>
+            </div>
+            <ui:include src="side.xhtml"/>
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+        <ui:include src="foot.xhtml"/>
+    </h:body>
+</html>
+

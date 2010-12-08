@@ -1,0 +1,25 @@
+h1. Exercices
+
+* gestion en lecture des TL
+** entités
+** service d'accès
+*** requête JPQL et Criteria
+** JSF
+*** controleur
+*** vue
+** service REST
+* gestion des catégories
+** services d'accès
+** JSF
+** service REST
+* post de TL
+** service d'ajout
+** vue JSF
+** service REST
+* post de commentaire
+** service d'ajout
+** JSF
+** service REST
+* modération des TL
+** service de suppression
+** vue JSF

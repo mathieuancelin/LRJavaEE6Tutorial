@@ -6,10 +6,11 @@ ici vous trouverez les sources de l'application ThatsLife. Les différentes él�
 * ThatsLifeTP : le projet vide du TP
 * ThatsLife : les sources du projet final
 
-Pour tester l'application finale, téléchargez et installez un Netbeans 6.9.1 contenant Glassfish (http://netbeans.org/downloads/index.html, version Java ou All). Ensuite ouvrer le projet ThatsLife dans Netbeans et lancez le (clic droit, run).
+Pour tester l'application finale, téléchargez et installez un Netbeans 6.9.1 contenant Glassfish ("http://netbeans.org/downloads/index.html":http://netbeans.org/downloads/index.html, version Java ou All). Ensuite ouvrer le projet ThatsLife dans Netbeans et lancez le (clic droit, run).
 
-L'url de départ de situe à l'adresse http://localhost:8080/ThatsLife/faces/index.xhtml
+L'url de départ de situe à l'adresse "http://localhost:8080/ThatsLife/faces/index.xhtml":http://localhost:8080/ThatsLife/faces/index.xhtml
 
-Vous pouvez également attaquer l'application via ses services REST (avec un outil comme SOAPUI). Le descripteur de webservices (nécessaire pour créer un projet SOAPUI) se trouve à l'adresse suivante http://localhost:8080/ThatsLife/services/application.wadl. Des outils comme curl ou wget feront également très bien l'affaire ;-)
+Vous pouvez également attaquer l'application via ses services REST (avec un outil comme SOAPUI). Le descripteur de webservices (nécessaire pour créer un projet SOAPUI) se trouve à l'adresse suivante "http://localhost:8080/ThatsLife/services/application.wadl":http://localhost:8080/ThatsLife/services/application.wadl. Des outils comme curl ou wget feront également très bien l'affaire ;-)
 
-Si vous avez des questions, n'hésitez pas à me contacter à mathieu.ancelin@serli.com
+Si vous avez des questions, n'hésitez pas à me contacter à "mathieu.ancelin@serli.com":mailto:mathieu.ancelin@serli.com
+

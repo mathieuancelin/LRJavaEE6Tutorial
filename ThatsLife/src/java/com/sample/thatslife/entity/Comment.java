@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.sample.thatslife.entity;
 
 import java.io.Serializable;
@@ -11,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
+ * Entité en base représentant un commentaire sur une thatslife
+ * 
  * @author mathieuancelin
  */
 @Entity
@@ -60,6 +57,7 @@ public class Comment implements Serializable {
         this.thatsLife = thatsLife;
     }
 
+    @XmlTransient
     public ThatsLife getThatsLife() {
         return thatsLife;
     }

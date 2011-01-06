@@ -5,6 +5,6 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <f:metadata>
         <f:viewParam name="categ" value="#{applicationController.categId}" required="false"/>
-        <f:event type="preRenderView" listener="#{applicationController.doNavigate}"/>
+        <f:viewParam name="tlid" value="#{singleController.tlId}" required="false"/>
     </f:metadata>
 </h:head>

@@ -10,19 +10,11 @@
         <ui:include src="menu.xhtml"/>
         <div id="page">
 
-            <h:form>
-                Auteur : <h:inputText value="#{applicationController.author}"/><br/>
+            <h:form rendered="#{applicationController.categId != null}">
+                Auteur : <h:inputText value="#{formController.author}"/><br/>
                 <h:inputTextarea id="failText" cols="60" rows="3"
-                                 value="#{applicationController.text}"/><br/>
-                Catégorie : 
-                <h:selectOneMenu value="#{applicationController.category}">
-                      <f:selectItems
-                          value="#{applicationController.categs}"
-                          var="categ"
-                          itemLabel="#{categ.name}"
-                          itemValue="#{categ.id.toString()}"/>
-                </h:selectOneMenu>
-                <h:commandButton id="formSubmit" value="Poster" action="#{applicationController.doPost}"/>
+                                 value="#{formController.text}"/><br/>                
+                <h:commandButton id="formSubmit" value="Poster" action="#{formController.doPost}"/>
             </h:form>
 
             <div id="content">

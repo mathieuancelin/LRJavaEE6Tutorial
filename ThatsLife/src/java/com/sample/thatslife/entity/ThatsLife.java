@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.sample.thatslife.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,15 +12,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Entité en base représentant une thatslife.
  *
  * @author mathieuancelin
  */
@@ -37,6 +27,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "ThatsLife.findByCategory",
         query = "select t from ThatsLife t where t.category.id = :id order by t.tlDate DESC")
 })
+@XmlRootElement
 public class ThatsLife implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -63,39 +54,10 @@ public class ThatsLife implements Serializable {
     private Category category;
 
     @OneToMany(mappedBy = "thatsLife")
+    
     private Collection<Comment> comments;
 
-    private static EntityManager em;
-
-    public static Collection<ThatsLife> findAll() {
-        return em.createNamedQuery("ThatsLife.all").getResultList();
-    }
-
-    public static ThatsLife findById(Long id) {
-        return em.find(ThatsLife.class, id);
-    }
-
-    public static Collection<ThatsLife> findByCategory(Long id) {
-        return em.createNamedQuery("ThatsLife.findByCategory").setParameter("id", id).getResultList();
-    }
-
-    public static Collection<ThatsLife> findByCategoryBis(Long id) {
-        CriteriaBuilder builder = em.getCriteriaBuilder();
-        CriteriaQuery<ThatsLife> criteria = builder.createQuery(
-            ThatsLife.class);
-        Root<ThatsLife> personRoot = criteria.from(ThatsLife.class);
-        criteria.select(personRoot);
-        ParameterExpression<Long> idParam = builder.parameter(Long.class);
-        criteria.where(
-                builder.equal(
-                    ((Root<Category>)personRoot.get("category")
-                    .as(Category.class)).get("id").as(Category.class), idParam)
-        );
-        TypedQuery<ThatsLife> query = em.createQuery(criteria);
-        query.setParameter(idParam, id);
-        return query.getResultList();
-
-    }
+    ////////////////////////////////////////////////////////////////////////////
 
     public String getAuthor() {
         return author;
@@ -104,11 +66,6 @@ public class ThatsLife implements Serializable {
     public void setAuthor(String author) {
         this.author = author;
     }
-
-
-    ////////////////////////////////////////////////////////////////////////////
-
-    
 
     public Long getId() {
         return id;
@@ -164,10 +121,6 @@ public class ThatsLife implements Serializable {
 
     public void setTlDate(Date tlDate) {
         this.tlDate = tlDate;
-    }
-
-    public static void setEm(EntityManager em) {
-        ThatsLife.em = em;
     }
 
     @Override

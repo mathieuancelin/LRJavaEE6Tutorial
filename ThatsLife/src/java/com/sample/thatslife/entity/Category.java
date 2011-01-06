@@ -1,15 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.sample.thatslife.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +10,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 /**
- *
+ * Entité en base représentant une catgéorie de thatslife.
+ * 
  * @author mathieuancelin
  */
 @Entity
@@ -26,8 +20,6 @@ import javax.persistence.OneToMany;
 public class Category implements Serializable {
     
     private static final long serialVersionUID = 1L;
-
-    private static EntityManager em;
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,10 +29,6 @@ public class Category implements Serializable {
     private List<ThatsLife> thatsLifes;
 
     private String name;
-
-    public static void setEm(EntityManager em) {
-        Category.em = em;
-    }
 
     public String getName() {
         return name;
@@ -88,14 +76,6 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return name;
-    }
-
-    public static Collection<Category> findAll() {
-        return em.createNamedQuery("Category.all").getResultList();
-    }
-
-    public static Category findById(Long id) {
-        return em.find(Category.class, id);
     }
 
 }

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:include src="head.xhtml"/>
+    <h:body>
+        <ui:include src="menu.xhtml"/>
+        <h:form>
+            <div id="page">
+                <div id="content">
+                    <div class="post">
+                        <h2 class="title" >
+                            <h:commandLink action="#{singleController.viewTl}" value="That's life by #{singleController.current.author}">
+                                <f:param name="tlid" value="#{singleController.current.id}"/>
+                            </h:commandLink>
+
+                        </h2>
+                        <div class="meta">
+                            <em>
+                                <h:outputText value="#{singleController.current.tlDate}"/> in <b><h:outputText value="#{singleController.current.category.name}"/></b>
+                                - <h:outputText value="#{singleController.current.iAgree}"/>/<h:outputText value="#{singleController.current.iDisagree}"/>
+                                - <h:commandLink  style="color: #DC143C;" action="#{singleController.removeTl}" value="Delete">
+                                    <f:param name="tlid" value="#{singleController.current.id}"/>
+                                </h:commandLink>
+                            </em>
+                        </div>
+                        <div class="entry">
+                            <h:outputText value="#{singleController.current.text}"/> #thatslife<br/>
+                            <div class="meta"></div>
+                            <br/>
+                            <div><b>Commentaires</b> :</div><br/>
+                            <div>
+                                <h:dataTable value="#{singleController.current.comments}" var="comment">
+                                    <h:column>
+                                        <div><h:outputText value="#{comment.comment}"/> - <em>par <h:outputText value="#{comment.author}"/></em></div><br/>
+                                    </h:column>
+                                </h:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ui:include src="side.xhtml"/>
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+        </h:form>
+        <ui:include src="foot.xhtml"/>
+    </h:body>
+</html>
+

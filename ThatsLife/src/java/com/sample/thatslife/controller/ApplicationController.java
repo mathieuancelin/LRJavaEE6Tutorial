@@ -1,17 +1,19 @@
 package com.sample.thatslife.controller;
 
+import com.sample.thatslife.boundary.CategoryBean;
 import com.sample.thatslife.boundary.ThatsLifeBean;
 import com.sample.thatslife.entity.Category;
 import com.sample.thatslife.entity.ThatsLife;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
+ * Controlleur JSF propre à l'application.
  *
  * @author mathieuancelin
  */
@@ -25,36 +27,33 @@ public class ApplicationController implements Serializable {
 
     private Long categId;
 
-    private String author;
-
-    private String text;
-
-    private String category;
+    @EJB
+    private ThatsLifeBean tlBean;
 
     @EJB
-    private ThatsLifeBean bean;
-    
-    public void doNavigate() {
-        author = "";
-        text = "";
-        category = null;
-        categs = Category.findAll();
-        if (categId != null) {
-            thatLifes = ThatsLife.findByCategory(categId);
-        } else {
-            thatLifes = ThatsLife.findAll();
-        }
+    private CategoryBean categoryBean;
+
+    /**
+     * Lors de la construction de l'objet (à chaque requete)
+     * on charge les catégories et les thatslife.
+     */
+    @PostConstruct
+    public void fetchAll() {
+        categs = categoryBean.findAll();
+        thatLifes = tlBean.findAll();
     }
 
-    public String doPost() {
-        ThatsLife tl = new ThatsLife();
-        tl.setAuthor(author);
-        tl.setText(text);
-        tl.setTlDate(new Date());
-        tl.setCategory(Category.findById(Long.valueOf(category)));
-        bean.save(tl);
+    /**
+     * Affichage d'un catégorie en particulier.
+     * CategId est mis a jour depuis le fichier head.xhtml via la ligne
+     * <f:viewParam name="categ" value="#{applicationController.categId}" required="false"/>
+     */
+    public String doShowCateg() {
+        fetchAll();
+        if (categId != null) {
+            thatLifes = tlBean.findByCategory(categId);
+        }
         return "index";
-
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -83,29 +82,4 @@ public class ApplicationController implements Serializable {
         this.thatLifes = thatLifes;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
- 
 }

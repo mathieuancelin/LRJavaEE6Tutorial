@@ -1,6 +1,6 @@
 package com.sample.thatslife.boundary;
 
-import com.sample.thatslife.entity.ThatsLife;
+import com.sample.thatslife.entity.Category;
 import java.util.Collection;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,7 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- * EJB offrant des méthodes de lecture/ecriture sur les objets ThatsLife.
+ * EJB offrant des méthodes de lecture/ecriture sur les objets Category.
  * Cet EJB expose également ses methodes en tant que services REST renvoyant
  * du XML ou du JSON (le client décide via un header http accept)
  * La fichier de description du WS est disponible à 
@@ -24,49 +24,39 @@ import javax.ws.rs.core.MediaType;
  * @author mathieuancelin
  */
 @Stateless
-@Path("thatslife")
-public class ThatsLifeBean {
+@Path("categories")
+public class CategoryBean {
     
     @PersistenceContext
     private EntityManager em;
 
     /**
-     * Trouve un objet thatslife dans le bd via son ID.
+     * @return un objet Category dans le bd via son ID.
      */
     @GET
-    @Path("{key}")
+    @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public ThatsLife findById(@PathParam("key") Long thatslifeId) {
-        return em.find(ThatsLife.class, thatslifeId);
+    public Category findById(@PathParam("id") Long id) {
+        return em.find(Category.class, id);
     }
 
     /**
-     * @return tous les objets thatslife de la bd.
+     * @return tous les objets Category de la bd.
      */
     @GET
+    @Path("all")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection<ThatsLife> findAll() {
-        return em.createNamedQuery("ThatsLife.all")
+    public Collection<Category> findAll() {
+        return em.createNamedQuery("Category.all")
                 .getResultList();
     }
 
     /**
-     * @return tous les objets thatslife de la bd pour une catégorie donnée.
-     */
-    @GET
-    @Path("category/{key}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Collection<ThatsLife> findByCategory(@PathParam("key") Long categoryId) {
-        return em.createNamedQuery("ThatsLife.findByCategory")
-                .setParameter("id", categoryId).getResultList();
-    }
-
-    /**
-     * Sauvegarde en base d'un objet thatslife.
+     * Sauvegarde en base d'un objet Category.
      */
     @POST
     @Consumes({MediaType.APPLICATION_XML})
-    public ThatsLife save(ThatsLife t) {
+    public Category save(Category t) {
         if (em.contains(t)) {
             return em.merge(t);
         } else {
@@ -76,11 +66,11 @@ public class ThatsLifeBean {
     }
 
     /**
-     * Suppression d'un objet thatslife.
+     * Suppression d'un objet Category.
      */
     @DELETE
     @Path("{key}")
-    public void delete(Long thatslifeId) {
-        em.remove(em.find(ThatsLife.class, thatslifeId));
+    public void delete(Long tlId) {
+        em.remove(em.find(Category.class, tlId));
     }
 }

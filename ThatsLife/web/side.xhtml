@@ -9,9 +9,9 @@
                     <h:dataTable value="#{applicationController.categs}" var="categ">
                         <h:column>
                             <li>
-                                <h:commandLink action="index.xhtml" value="#{categ.name}">
-                                    <f:param name="categ" value="#{categ.id}"/>
-                                </h:commandLink>
+                            <h:commandLink action="#{applicationController.doShowCateg}" value="#{categ.name}">
+                                <f:param name="categ" value="#{categ.id}"/>
+                            </h:commandLink>
                             </li>
                         </h:column>
                     </h:dataTable>

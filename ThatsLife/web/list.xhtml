@@ -1,8 +1,15 @@
-<div xmlns:h="http://java.sun.com/jsf/html">
+<div xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:f="http://java.sun.com/jsf/core">
     <h:dataTable value="#{applicationController.thatLifes}" var="tl">
         <h:column>
             <div class="post">
-                <h2 class="title" >That's life by <h:outputText value="#{tl.author}"/></h2>
+                <h:form>
+                    <h2 class="title" >
+                        <h:commandLink action="#{singleController.viewTl}" value="That's life by #{tl.author}">
+                            <f:param name="tlid" value="#{tl.id}"/>
+                        </h:commandLink>
+                    </h2>
+                </h:form>
                 <div class="meta">
                     <em>
                         <h:outputText value="#{tl.tlDate}"/> in <b><h:outputText value="#{tl.category.name}"/></b>

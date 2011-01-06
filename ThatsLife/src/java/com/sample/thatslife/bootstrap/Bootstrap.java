@@ -13,21 +13,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
+ * Simple EJB auto démarrable permettant de persister quelques objets en base pour les tests.
  *
  * @author mathieuancelin
  */
-@Singleton
-@Startup
+@Singleton // EJB singleton
+@Startup // démarrage après le déploiement de l'application
 public class Bootstrap {
 
+    // Injection du contexte de peristence
     @PersistenceContext
     private EntityManager em;
 
+    /**
+     * Method appelée par le conteneur après la création de l'EJB.
+     */
     @PostConstruct
     public void init() {
-
-        Category.setEm(em);
-        ThatsLife.setEm(em);
 
         Category categ = new Category();
         categ.setName("Autre");
@@ -62,8 +64,6 @@ public class Bootstrap {
         tl.setCategory(categ);
         em.persist(tl);
 
-        
-
         Comment comment = new Comment();
         comment.setAuthor("Maurice");
         comment.setComment("Tres drole");
@@ -84,7 +84,5 @@ public class Bootstrap {
         em.merge(tl);
 
         em.flush();
-
     }
-
 }

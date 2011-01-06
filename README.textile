@@ -1,0 +1,15 @@
+h1. TP Java EE 6
+
+ici vous trouverez les sources de l'application ThatsLife. Les différentes éléments à votre disposition sont :
+
+* ThatsLife.pdf : énoncé du tp
+* ThatsLifeTP : le projet vide du TP
+* ThatsLife : les sources du projet final
+
+Pour tester l'application finale, téléchargez et installez un Netbeans 6.9.1 contenant Glassfish (http://netbeans.org/downloads/index.html, version Java ou All). Ensuite ouvrer le projet ThatsLife dans Netbeans et lancez le (clic droit, run).
+
+L'url de départ de situe à l'adresse http://localhost:8080/ThatsLife/faces/index.xhtml
+
+Vous pouvez également attaquer l'application via ses services REST (avec un outil comme SOAPUI). Le descripteur de webservices (nécessaire pour créer un projet SOAPUI) se trouve à l'adresse suivante http://localhost:8080/ThatsLife/services/application.wadl. Des outils comme curl ou wget feront également très bien l'affaire ;-)
+
+Si vous avez des questions, n'hésitez pas à me contacter à mathieu.ancelin@serli.com
